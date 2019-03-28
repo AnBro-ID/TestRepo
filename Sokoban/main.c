@@ -11,12 +11,12 @@ void swap(char *a, char *b)
     *a ^= *b;
 }
 
-void swapi(int *a, int *b)
+/*void swapi(int *a, int *b)
 {
     *a ^= *b;
     *b ^= *a;
     *a ^= *b;
-}
+}*/
 
 struct pos
 {
@@ -24,13 +24,11 @@ struct pos
     int j;
 };
 
-int checkGameOver(char M[][N], int i, int j)
+/*int checkGameOver(char M[][N], int i, int j)
 {
-    if (((M[i + 1][j] == '#' && M[i][j + 1] == '#') || (M[i - 1][j] == '#' && M[i][j - 1] == '#'))
-    || ((M[i + 1][j] == '@' && M[i][j + 1] == '@')  || (M[i - 1][j] == '@' && M[i][j - 1] == '@')))
-    return 1;
+    if (M[i][j] == '#' && (M[i - 1][j] == '#' || M[i + 1][j] == '#')) return 1;
     else return 0;
-}
+}*/
 
 void draw(char M[][N])
 {
@@ -76,7 +74,7 @@ void init(char M[][N], struct pos *p_pos, int *k)
 int main(void)
 {
     initscr();
-    raw();
+    cbreak();
     noecho();
 
     int di = 0, dj = 0;
@@ -122,12 +120,12 @@ int main(void)
                 swap(&M[p_pos.i + di][p_pos.j + dj], &M[p_pos.i][p_pos.j]);
                 swap(&M[p_pos.i - di][p_pos.j - dj], &M[p_pos.i][p_pos.j]);
 
-                if (checkGameOver(M, p_pos.i + di, p_pos.j + dj) && M[p_pos.i + di][p_pos.j + dj] == '@')
+                /*if (checkGameOver(M, p_pos.i + di + di, p_pos.j + dj + dj))
                 {
                     draw(M);
                     printw("\nLOOSEER!\n");
                     run = 0;
-                }
+                }*/
             }
             else if (M[p_pos.i + di][p_pos.j + dj] == 'x' && M[p_pos.i][p_pos.j] == '@')
             {
