@@ -119,7 +119,7 @@ int main(void)
 	srand(time(0));
 
 	initscr();
-	raw();
+	cbreak();
 	noecho();
 	nodelay(stdscr, TRUE);
 
@@ -205,13 +205,13 @@ int main(void)
 			}
 		}
 
-		usleep(400000);
+		usleep(350000);
 	}
 
 	printw("\nLOOSEER!\n");
 
     nodelay(stdscr, FALSE);
-    cbreak();
+    //cbreak();
 	getch();
     endwin();
 
