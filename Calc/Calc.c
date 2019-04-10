@@ -59,7 +59,7 @@ number* sum(number *a, number *b)
 	{
 		if (i > c->len - 1)
 		{
-			c->len += max(a->len, b->len);
+			c->len += max(a->len, b->len) - 1;
 			c->num = (int*)realloc(c->num, c->len * sizeof(int));
 		}
 		
