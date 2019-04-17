@@ -81,6 +81,18 @@ void print(number *n)
 		printf("%d", n->num[i]);
 }
 
+number* maxOf(number *a, number *b)
+{
+	for (int i = 0; i < max(a->len, b->len); ++i)
+	{
+		if (a->num[i] > b->num[i]) return a;
+		else if (a->num[i] < b->num[i]) return b;
+		else break;
+	}
+
+	return a;
+}
+
 int main()
 {
     number *a, *b, *c;
