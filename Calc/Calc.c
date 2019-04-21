@@ -86,11 +86,10 @@ number* maxOf(number *a, number *b)
 	if (a->len > b->len) return a;
 	else if (a->len < b->len) return b;
 	else
-	for (int i = 0; i < max(a->len, b->len); ++i)
+	for (int i = a->len - 1; i >= 0; --i)
 	{
 		if (a->num[i] > b->num[i]) return a;
 		else if (a->num[i] < b->num[i]) return b;
-		//else break;
 	}
 
 	return a;
