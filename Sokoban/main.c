@@ -153,11 +153,11 @@ int main(void)
         {
             draw(M);
             printw("\nVICTORY!\n");
+			getch();
             run = 0;
         }
     }
 
-    getch();
     endwin();
     return 0;
 }
