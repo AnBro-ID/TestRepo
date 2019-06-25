@@ -159,11 +159,11 @@ int main(void)
 		
 		if (S.c_pos[0].i == N - 1)
 			S.c_pos[0].i = 1;
-		if (S.c_pos[0].i == 0)
+		else if (S.c_pos[0].i == 0)
 			S.c_pos[0].i = N - 2;
 		if (S.c_pos[0].j == N - 1)
 			S.c_pos[0].j = 1;
-		if (S.c_pos[0].j == 0)
+		else if (S.c_pos[0].j == 0)
 			S.c_pos[0].j = N - 2;
 
 		checkGameOver(M, &S);
