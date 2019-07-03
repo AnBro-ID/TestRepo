@@ -12,9 +12,14 @@ typedef struct number
 	int len;
 } number;
 
-int max(int a, int b)
+number* max_len(number *a, number *b)
 {
-	return a > b ? a : b;
+	return a->len >= b->len ? a : b;
+}
+
+number* min_len(number *a, number *b)
+{
+	return a->len < b->len ? a : b;
 }
 
 number* init()
@@ -47,29 +52,26 @@ number* init()
 
 number* sum(number *a, number *b)
 {
-	number* c;
+	number *c = max_len(a, b);
+	b = min_len(a, b);
+	
+	int minLen = b->len;
+	int carry = 0;
 
-	c = (number*)malloc(sizeof(number));
-
-	c->len = 2;
-	c->sign = '+';
-	c->num = (int*)malloc(c->len * sizeof(int));
-
-	for (int i = 0; i < max(a->len, b->len); ++i)
+	for (int i = 0; i < minLen || carry; ++i)
 	{
-		if (i > c->len - 1)
-		{
-			c->len += max(a->len, b->len) - 1;
-			c->num = (int*)realloc(c->num, c->len * sizeof(int));
-		}
-		
-		c->num[i] += a->num[i] + b->num[i];
-		c->num[i + 1] = c->num[i] / base;
-		c->num[i] %= base;
+	    if (i > c->len - 1)
+	    {
+	      c->len++;
+		  c->num = (int*)realloc(c->num, c->len * sizeof(int));
+		  c->num[c->len - 1] = 0;
+        }		
+        
+		c->num[i] += (i < minLen ? b->num[i] : 0) + carry;
+		carry = c->num[i] / base;
+		c->num[i] %= base;		
 	}
-
-	if (c->num[c->len - 1] == 0) c->len--;
-
+	
 	return c;
 }
 
@@ -102,8 +104,9 @@ int main()
     a = init();
     b = init();
     
-    //c = sum(a, b);
-    print(maxOf(a, b));    
+    c = sum(a, b);
+    print(c);    
 
+	getchar();getchar();
     return 0;
 }
